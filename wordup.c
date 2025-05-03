@@ -21,8 +21,7 @@ int main(){
 	getword(CAP, word);
 	while(again == 1 && num <= 5){
 		getguess(&num, CAP, guess);
-		validateguess(&num, CAP, guess);
-		makelower(CAP, guess);	
+		makelower(CAP, guess);
 		checkguess(&again, num, CAP, guess, word, pastG, CL);
 		if(again != 0){
 			display(num+1, CAP, pastG, CL);
@@ -50,16 +49,18 @@ void getword(int length, char array[]){
 	fgets(array, length, readfileptr);
 }
 
-void getguess(int* guess, int length, char array[]){
-	if(*guess == 5){
+void getguess(int* guessnum, int length, char array[]){
+	
+	if(*guessnum == 5){
 	printf("GUESS FINAL! Enter your guess: ");
 	}
 	else{
-		printf("GUESS %d! Enter your guess: ", *guess+1);
+		printf("GUESS %d! Enter your guess: ", *guessnum+1);
 	}
 	
 	fgets(array, length, stdin);
 	
+	validateguess(guessnum, CAP, array);
 }
 void validateguess(int* guess, int length, char array[]){
 	int  count;
@@ -67,7 +68,6 @@ void validateguess(int* guess, int length, char array[]){
 		}
 	while(count != 6 ){
 		count = 0;
-
 		printf("Your guess must be 5 letters long.\n");
 		printf("Please try again: ");
 		fgets(array, length, stdin);
